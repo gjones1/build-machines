@@ -6,7 +6,11 @@ RUN apt-get update && apt-get install -y cmake doxygen subversion rsync cups-ppd
 RUN mkdir /usr/src/able_cups_build /opt/rpi-wheezy-build-libs
 
 WORKDIR /opt/rpi-wheezy-build-libs
-COPY extract_deb_contents.sh .
+
+RUN git clone https://github.com/gjones1/build-machines.git
+RUN mv build-machines/raspbian_xcompile_with_cups_libs/extract_deb_contents.sh .
+RUN chmod +x extract_deb_contents.sh
+RUN rm -rf build-machines/raspbian_xcompile_with_cups_libs
 
 # libgcrypt11_1.5.0-5+deb7u3_armhf.deb
 RUN /opt/rpi-wheezy-build-libs/extract_deb_contents.sh main/libg/libgcrypt11/libgcrypt11_1.5.0-5+deb7u3_armhf.deb
