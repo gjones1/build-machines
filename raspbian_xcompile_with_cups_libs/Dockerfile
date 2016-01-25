@@ -7,7 +7,7 @@ RUN mkdir /usr/src/able_cups_build /opt/rpi-wheezy-build-libs
 
 WORKDIR /opt/rpi-wheezy-build-libs
 
-ADD http://archive.raspbian.org/raspbian/dists/wheezy/main/binary-armhf/Packages .
+RUN wget -q  http://archive.raspbian.org/raspbian/dists/wheezy/main/binary-armhf/Packages .
 RUN echo libgcrypt11 > required_libraries.txt
 RUN echo libgcrypt11 >> required_libraries.txt
 RUN echo libgpg-error >> required_libraries.txt
