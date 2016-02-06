@@ -14,3 +14,8 @@ RUN apt-get update && apt-get install -y clang-3.7 clang-3.7-doc libclang-common
     python-clang-3.7 lldb-3.7-dev
 
 RUN git clone https://github.com/Microsoft/GSL.git
+
+update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7 100
+update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.7 100
+update-alternatives --install /usr/bin/cc cc /usr/bin/clang 100
+update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 100
