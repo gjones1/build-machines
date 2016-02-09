@@ -11,11 +11,11 @@ RUN apt-get update && apt-get install -y clang-3.7 clang-3.7-doc libclang-common
     libclang-3.7-dev libclang1-3.7 libclang1-3.7-dbg libllvm-3.7-ocaml-dev \
     libllvm3.7 libllvm3.7-dbg lldb-3.7 llvm-3.7 llvm-3.7-dev llvm-3.7-doc \
     llvm-3.7-examples llvm-3.7-runtime clang-modernize-3.7 clang-format-3.7 \
-    python-clang-3.7 lldb-3.7-dev
+    python-clang-3.7 lldb-3.7-dev clang-tidy-3.7
 
 RUN git clone https://github.com/Microsoft/GSL.git
 
-update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7 100
-update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.7 100
-update-alternatives --install /usr/bin/cc cc /usr/bin/clang 100
-update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 100
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7 100
+RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.7 100
+RUN update-alternatives --install /usr/bin/cc cc /usr/bin/clang 100
+RUN update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 100
