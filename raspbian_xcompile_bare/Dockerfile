@@ -1,8 +1,8 @@
-FROM thewtex/cross-compiler-linux-armv6
+FROM sdthirlwall/raspberry-pi-cross-compiler
 MAINTAINER Gareth Jones <joneszone1975@gmail.com>
 
 LABEL Description="Cross compile environment for Raspbian"
-RUN apt-get update && apt-get install -y doxygen subversion
+RUN install-debian doxygen ninja-build pkgconf
 
 # Update the cmake build to the latest release
 WORKDIR /usr/src/CMake
@@ -19,18 +19,7 @@ RUN /usr/src/CMake/bootstrap --parallel=$(nproc) --prefix=/usr && \
 WORKDIR /usr/src
 RUN rm -rf CMake CMake-build
 
-# Update the ninja build tool to the latest
-WORKDIR /usr/src/ninja
-RUN git checkout release && git pull && git checkout $(git describe --tags)
-
-# Build and install the latest ninja
-RUN python ./configure.py --bootstrap && ./ninja && cp ./ninja /usr/bin/
-
-# Tidy up
-WORKDIR /usr/src
-RUN rm -rf ninja
-
 # Set up the build environment
-RUN mkdir /usr/build
-VOLUME /usr/src
-WORKDIR /usr/build
+ENV RPXC_IMAGE=geordiejones/raspbian_fpu_build_env
+WORKDIR /build
+ENTRYPOINT [ "/rpxc/entrypoint.sh" ]
