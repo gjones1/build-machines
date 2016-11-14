@@ -2,11 +2,13 @@ FROM sdthirlwall/raspberry-pi-cross-compiler
 MAINTAINER Gareth Jones <joneszone1975@gmail.com>
 
 LABEL Description="Cross compile environment for Raspbian"
-RUN install-debian doxygen ninja-build pkgconf
+RUN install-debian --update doxygen ninja-build pkgconf zlib1g-dev \
+                            libcurl4-gnutls-dev libssl-dev
 
 # Update the cmake build to the latest release
 WORKDIR /usr/src/CMake
-RUN git checkout release && git pull && git checkout $(git describe --tags)
+RUN git clone -b release https://gitlab.kitware.com/cmake/cmake.git .
+RUN git gc
 
 # Build and install the latest cmake
 WORKDIR /usr/src/CMake-build
@@ -20,6 +22,6 @@ WORKDIR /usr/src
 RUN rm -rf CMake CMake-build
 
 # Set up the build environment
-ENV RPXC_IMAGE=geordiejones/raspbian_fpu_build_env
+ENV RPXC_IMAGE=geordiejones/raspbian_xcompile_bare
 WORKDIR /build
 ENTRYPOINT [ "/rpxc/entrypoint.sh" ]
