@@ -2,16 +2,15 @@
 
 This is available in docker as geordiejones/raspbian_xcompile_bare
 
-This build machine is based on geordiejones/raspbian_xcompile_bare. It
-adds the following raspbian cross compiler libraries
-* libusb-0
-* libboost-program-options
+This build machine is based on geordiejones/raspbian_xcompile_bare. It includes
+a bundle of development libraries for use within RPi projects.  It is no longer
+specific to any particular project.
 
 The installed CMake is updated to the latest versions (from source).
 
 Build locally in the normal way:
 ```bash
-export RPXC_IMAGE=geordiejones/raspbian_xcompile_bare
+export RPXC_IMAGE=geordiejones/raspbian_xcompile_fpu
 docker build -t $RPXC_IMAGE .
  ```
 
