@@ -7,6 +7,7 @@ RUN echo "deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie main" >> /etc/ap
 RUN echo "deb-src http://llvm.org/apt/jessie/ llvm-toolchain-jessie main" >> /etc/apt/sources.list
 RUN wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add -
 
+RUN apt-get update
 RUN apt-get install -y clang-5.0 clang-5.0-doc libclang-common-5.0-dev
 RUN apt-get install -y libclang-5.0-dev libclang1-5.0 libclang1-5.0-dbg libllvm-5.0-ocaml-dev
 RUN apt-get install -y libllvm5.0 libllvm5.0-dbg lldb-5.0 llvm-5.0 llvm-5.0-dev llvm-5.0-doc
