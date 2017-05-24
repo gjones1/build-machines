@@ -1,4 +1,4 @@
-FROM geordiejones/raspbian_xcompile_bare
+FROM sdthirlwall/raspberry-pi-cross-compiler
 MAINTAINER Gareth Jones <joneszone1975@gmail.com>
 
 LABEL Description="Cross compile environment for fpu on Raspbian"
