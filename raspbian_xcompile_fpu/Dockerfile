@@ -14,7 +14,7 @@ RUN /usr/src/cmake-3.8.1/bootstrap --parallel=$(nproc) --prefix=/usr && \
   make -j$(nproc) && ./bin/cmake . && make install
 
 WORKDIR /rpxc/sysroot/home
-RUN install-debian --update cups-ppdc doxygen
+RUN install-debian --update cups-ppdc doxygen pkg-config file
 RUN install-raspbian --update libcups2-dev libbsd-dev libusb-1.0-0-dev libcupsimage2-dev
 
 # for come reason the following don't work so I need to install by hand in
